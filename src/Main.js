@@ -58,8 +58,6 @@ export default class Main extends Component {
       .catch(err => console.error(err))
   }
 
-  currentId = this.state.currentFormItemID
-
   formAction = id => {
     id === null ? "Add" : "Update"
   }
@@ -70,7 +68,7 @@ export default class Main extends Component {
       <div>
         <button type="submit" onClick={this.logout}>Log out</button>
         <ChangePWForm token={this.props.location.state.token} />
-        {<ItemForm action={this.formAction(this.currentId)}
+        {<ItemForm action={this.formAction(this.state.currentFormItemID)}
             setCurrentFormItemID={this.setCurrentFormItemID}
             currentFormItemID={this.state.currentFormItemID}
             items={this.state.items}
