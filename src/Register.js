@@ -25,7 +25,7 @@ export default class Register extends Component {
   onSubmit = e => {
     e.preventDefault()
 
-    const { email, password, preventDefault } = this.state
+    const { email, password, password_confirmation } = this.state
 
     axios.post(`${apiUrl}/sign-up`, { email, password, password_confirmation })
       .then(result => {

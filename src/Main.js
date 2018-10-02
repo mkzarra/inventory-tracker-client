@@ -9,7 +9,7 @@ import ItemList from './ItemList.js'
 
 export default class Main extends Component {
 
-  constructor() {
+  constructor(props) {
     super(props)
     this.state = {
       token: null,
