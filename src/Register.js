@@ -7,8 +7,8 @@ import './Register.css'
 
 export default class Register extends Component {
 
-  constructor() {
-    super()
+  constructor(props) {
+    super(props)
     this.state = {
       email: '',
       password: '',
@@ -38,7 +38,7 @@ export default class Register extends Component {
     axios.post(`${apiUrl}/sign-up`, { email, password, password_confirmation })
       .then(result => {
         console.log(result)
-        this.props.history.push('/sign-in')
+        // this.props.history.push('/sign-in')
         // routes to login on success
       })
       .then(this.clearInputData)
