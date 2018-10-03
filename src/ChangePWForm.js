@@ -1,12 +1,12 @@
 import React, { Component } from "react"
 import axios from 'axios'
-import { apiUrl } from '../server.js'
+import { apiUrl } from './server.js'
 import "./ChangePWForm.css"
 
 export default class ChangePWForm extends Component {
 
-  constructor() {
-    super(props)
+  constructor(props) {
+    super()
     this.state = {
       oldPwd: '',
       newPwd: '',
@@ -48,7 +48,7 @@ export default class ChangePWForm extends Component {
   }
 
   render() {
-    const { oldPwd, newPwd } = this.state
+    // const { oldPwd, newPwd } = this.state
     return (
       <div>
         <form className="changePwd-form" onSubmit={this.onSubmit}>

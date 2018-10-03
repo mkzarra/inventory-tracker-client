@@ -45,21 +45,21 @@ export default class ItemForm extends Component {
         .catch(err => console.error(err))
     }
 
-    addItem = data => {
-      return axios.post(`${apiUrl}/items`, data, {
-        headers: {
-          Authorization: `Bearer ${this.props.token}`
-        }
-      })
-    }
+  //   addItem = data => {
+  //     return axios.post(`${apiUrl}/items`, data, {
+  //       headers: {
+  //         Authorization: `Bearer ${this.props.token}`
+  //       }
+  //     })
+  //   }
 
-    updateItem = data => {
-      return axios.post(`${apiUrl}/items/${this.props.currentFormItemID}`, data, {
-        headers: {
-          Authorization: `Bearer ${this.props.token}`
-        }
-      })
-    }
+  //   updateItem = data => {
+  //     return axios.post(`${apiUrl}/items/${this.props.currentFormItemID}`, data, {
+  //       headers: {
+  //         Authorization: `Bearer ${this.props.token}`
+  //       }
+  //     })
+  //   }
   }
 
   render() {

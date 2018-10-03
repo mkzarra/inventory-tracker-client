@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Route, Switch } from 'react-router-dom'
 import axios from 'axios'
-import apiUrl from './server.js'
+import { apiUrl } from './server.js'
 import Main from './Main.js'
 import './Register.css'
 
@@ -14,6 +14,14 @@ export default class Register extends Component {
       password: '',
       password_confirmation: ''
     }
+  }
+
+  clearInputData = () => {
+    this.setState({
+      email: '',
+      password: '',
+      password_confirmation: ''
+    })
   }
 
   onChange = e => {
@@ -33,6 +41,7 @@ export default class Register extends Component {
         this.props.history.push('/sign-in')
         // routes to login on success
       })
+      .then(this.clearInputData)
       .catch(err => console.error(err))
   }
 

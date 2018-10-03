@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import { Route, Switch } from 'react-router-dom';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import './App.css';
 import Routes from './Routes.js';
 import Login from './Login';
+import Register from './Register';
 
 class App extends Component {
 
@@ -19,38 +20,41 @@ class App extends Component {
   }
 
   render() {
-    if (this.state.viewLink === 'view') {
+    // if (this.state.viewLink === 'view') {
       return (
+      <BrowserRouter>
         <div className="App">
           <nav>
             {/* <Link to="/" className="links" id="home-link">HOME</Link> */}
             {/* logout success should reroute user back to home page */}
-            <Link to="/sign-up" className="links nav">register</Link>
+            <Register>Register</Register>
             {/* mount Register User component */}
-            <Link to="/sign-in" className="links nav">login</Link>
+            <Login>Login</Login>
             {/* mount Login user component */}
           </nav>
         <Routes setViewLinkState={this.setViewLinkState} viewLinkState={this.state.viewLink} />
         {/* load routes and pass view state and setter method as props */}
         </div>
+      </BrowserRouter>
       );
-    } else {
-      return (
-      <div className="App container">
-        <nav>
-          {/* hide login/logout links */}
-          {/* <Link to="/" className="links" id="home-link">HOME</Link> */}
-          {/* logout success should reroute user back to home page */}
-          {/* <Link to="/sign-up" className="links nav">register</Link> */}
-          {/* mount Register User component */}
-          {/* <Link to="/sign-in" className="links nav">login</Link> */}
-          {/* mount Login user component */}
-        </nav>
-        <Routes setViewLinkState={this.setViewLinkState} viewLinkState={this.state.viewLink} />
-        {/* load routes and pass view state and setter method as props so they're available in <Main /> */}
-      </div>
-      )
-    }
+    // } else {
+    //   return (
+      
+    //     <div className="App container">
+    //       <nav>
+    //         {/* hide login/logout links */}
+    //         {/* <Link to="/" className="links" id="home-link">HOME</Link> */}
+    //         {/* logout success should reroute user back to home page */}
+    //         {/* <Link to="/sign-up" className="links nav">register</Link> */}
+    //         {/* mount Register User component */}
+    //         {/* <Link to="/sign-in" className="links nav">login</Link> */}
+    //         {/* mount Login user component */}
+    //       </nav>
+    //       <Routes setViewLinkState={this.setViewLinkState} viewLinkState={this.state.viewLink} />
+    //       {/* load routes and pass view state and setter method as props so they're available in <Main /> */}
+    //       </div>
+    //   )
+    // }
   }
 }
 
