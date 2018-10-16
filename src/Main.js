@@ -3,7 +3,7 @@ import axios from 'axios'
 import apiUrl from './server.js'
 import './Main.css'
 import ChangePWForm from './auth/components/ChangePWForm.js'
-import ItemForm from './item/ItemForm.js'
+import ItemIndex from './item/ItemIndex.js'
 import ItemList from './item/ItemList.js'
 import AppBar from '@material-ui/core/AppBar'
 import Button from '@material-ui/core/Button'
@@ -67,7 +67,7 @@ export default class Main extends Component {
           <Button type="submit" onClick={this.logout}>Log out</Button>
         </AppBar>
         <ChangePWForm token={this.props.location.state.token} />
-        {<ItemForm action={this.formAction(this.state.currentFormItemID)}
+        {<ItemIndex action={this.formAction(this.state.currentFormItemID)}
             setCurrentFormItemID={this.setCurrentFormItemID}
             currentFormItemID={this.state.currentFormItemID}
             items={this.state.items}

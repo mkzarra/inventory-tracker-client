@@ -1,10 +1,9 @@
 import React from 'react'
 import axios from 'axios'
-import { apiUrl } from './server.js'
+import { apiUrl } from '../server.js'
 import './Item.css'
 
 const Item = props => {
-
 
   return (
     <div className="item-div">

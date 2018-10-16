@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import axios from 'axios'
-import { apiUrl } from './server.js'
+import { Link } from 'react-router-dom'
+import { apiUrl } from '../server.js'
 import './Item.css'
 import Nav from '../shared/Nav.js'
 
