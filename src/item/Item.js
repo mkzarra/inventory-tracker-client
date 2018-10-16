@@ -5,20 +5,6 @@ import './Item.css'
 
 const Item = props => {
 
-  const updateHandler = e => props.setCurrentFormItemID(props._id)
-
-  const handleDeleteItem = e => {
-    e.preventDefault()
-
-    axios.delete(`${apiUrl}/items/${props._id}`, {
-      headers: {
-      Authorization: `Bearer ${props.token}`
-      }
-    })
-      .then(result => console.log(result))
-      .then(props.itemRequest)
-      .catch(err => console.error(err))
-  }
 
   return (
     <div className="item-div">
@@ -29,8 +15,6 @@ const Item = props => {
         <div className="item-perishable">perishable: {props.perishable}</div>
         <div className="item-volume">volume: {props.volume}</div>
         <div className="item-unit">unit: {props.unit}</div>
-        <button type="submit" id="delete-item" onClick={handleDeleteItem}>Delete</button>
-        <button type="submit" id="update-item" onClick={updateHandler}>Update</button>
       </div>
     </div>
   )
