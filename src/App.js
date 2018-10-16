@@ -1,69 +1,61 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import { Route, Link } from 'react-router-dom';
 import './App.css';
-import Routes from './Routes.js';
-import Login from './auth/Login';
-import Register from './auth/Register';
-import AppBar from '@material-ui/core/AppBar'
+import AuthenticateRoute from './auth/components/AuthenticateRoute'
+import Login from './auth/components/Login';
+import Register from './auth/components/Register';
+import ChangePwdForm from './auth/components/ChangePWForm'
+import Logout from './auth/components/Logout'
+import Header from './header/Header'
 
 class App extends Component {
 
-  constructor(props) {
-    super(props)
+  constructor() {
+    super()
+
     this.state = {
-      viewLink: 'view'
+      user: null,
+      flashMessage: '',
+      flashType: null
     }
   }
 
-  setViewLinkState = newState => {
-    this.setState({viewLink: newState})
-  }
+  setUser = user => this.setState({ user })
+  
+  clearUser = () => this.setState({ user: null })
 
-  setLoggedInEmail = email => {
-    this.setState({loggedInEmail: email})
-  }
+  flash = (message, type) => {
+    this.setState({ flashMessage: message, flashType: type })
+    
+    clearTimeout(this.messageTimeout)
 
-  getLoggedInEmail = () => {
-    return this.setState.loggedInEmail
+    this.messageTimeout = setTimeout(() => this.setState({flashMessage: null}), 2000)
   }
 
   render() {
-    // if (this.state.viewLink === 'view') {
-      return (     
-        <div className="App">
-          <AppBar position="sticky" className="background">
-            <nav>
-            {/* <Link to="/" className="links" id="home-link">HOME</Link> */}
-            {/* logout success should reroute user back to home page */}
-            <Link to="/sign-up" className="links nav">Register</Link>
-            {/* mount Register User component */}
-            <Link to="/sign-in" className="links nav">Login</Link>
-            {/* mount Login user component */}
-              </nav>
-          </AppBar>
-        <Routes setViewLinkState={this.setViewLinkState} viewLinkState={this.state.viewLink} />
-        {/* load routes and pass view state and setter method as props */}
-        </div>
-      );
-    // } else {
-    //   return (
-      
-    //     <div className="App container">
-    //       <nav>
-    //         {/* hide login/logout links */}
-    //         {/* <Link to="/" className="links" id="home-link">HOME</Link> */}
-    //         {/* logout success should reroute user back to home page */}
-    //         {/* <Link to="/sign-up" className="links nav">register</Link> */}
-    //         {/* mount Register User component */}
-    //         {/* <Link to="/sign-in" className="links nav">login</Link> */}
-    //         {/* mount Login user component */}
-    //       </nav>
-    //       <Routes setViewLinkState={this.setViewLinkState} viewLinkState={this.state.viewLink} />
-    //       {/* load routes and pass view state and setter method as props so they're available in <Main /> */}
-    //       </div>
-    //   )
-    // }
+    const { flashMessage, flashType, user } = this.state
+    
+    return (
+      <React.Fragment>
+        <Header user={user} />
+        {flashMessage && <h3 className={flashType}>{flashMessage}</h3>}
+
+        <main className="container">
+          <Route path="/sign-up" render={() => (
+            <Register flash={this.flash} setUser={this.setUser} />
+          )} />
+          <Route path="/sign-in" render={() => (
+            <Login flash={this.flash} setUser={this.setUser} />
+          )} />
+          <AuthenicateRoute user={user} path="/sign-out" render={() => (
+            <Logout flash={this.flash} clearUser={this.clearUser} user={user} />
+          )} />
+          <AuthenticateRoute user={user} path="/change-password" render={() => (
+            <ChangePwdForm flash={this.flash} user={user} />
+          )} />
+        </main>
+      </React.Fragment>
+    )
   }
 }
 

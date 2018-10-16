@@ -1,7 +1,7 @@
 import React from 'react'
 import { Route, Switch } from 'react-router-dom'
-import Register from './auth/Register.js'
-import Login from './auth/Login.js'
+import Register from './auth/components/Register.js'
+import Login from './auth/components/Login.js'
 import Main from './Main.js'
 
 export default props => {
