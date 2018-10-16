@@ -1,11 +1,12 @@
 import React, { Component } from 'react'
-import { Route, Switch } from 'react-router-dom'
 import axios from 'axios'
 import apiUrl from './server.js'
 import './Main.css'
-import ChangePWForm from './ChangePWForm.js'
+import ChangePWForm from './auth/ChangePWForm.js'
 import ItemForm from './ItemForm.js'
 import ItemList from './ItemList.js'
+import AppBar from '@material-ui/core/AppBar'
+import Button from '@material-ui/core/Button'
 
 export default class Main extends Component {
 
@@ -23,14 +24,10 @@ export default class Main extends Component {
   }
 
   getAllItems = () => {
-    axios.get(`${apiUrl}/items`, {
-      headers: {
-        Authorization: `Bearer ${this.state.token}`
-      }
-    })
+    axios.get(`${apiUrl}/items`)
       .then(result => {
         console.log(result)
-        this.setState({ items: result.data.items })
+        this.setState({ items: result.data.items.reverse() })
       })
       .catch(err => console.error(err))
   }
@@ -42,7 +39,7 @@ export default class Main extends Component {
     // sets viewLinkState to null - removing visible links to login/signup
   }
 
-  logout = e => {
+  logout = () => {
     axios.delete(`${apiUrl}/sign-out`, {
       headers: {
         Authorization: `Bearer ${this.props.location.state.token}`
@@ -66,7 +63,9 @@ export default class Main extends Component {
     // TODO: write a function to make this less verbose and repetative
     return (
       <div>
-        <button type="submit" onClick={this.logout}>Log out</button>
+        <AppBar position="sticky" className="background" id="mainApp">
+          <Button type="submit" onClick={this.logout}>Log out</Button>
+        </AppBar>
         <ChangePWForm token={this.props.location.state.token} />
         {<ItemForm action={this.formAction(this.state.currentFormItemID)}
             setCurrentFormItemID={this.setCurrentFormItemID}

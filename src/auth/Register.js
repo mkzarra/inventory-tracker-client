@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { Route, Switch } from 'react-router-dom'
 import axios from 'axios'
 import { apiUrl } from './server.js'
-import Main from './Main.js'
+import Main from '../Main.js'
 import './Register.css'
 
 export default class Register extends Component {

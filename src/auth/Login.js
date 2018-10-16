@@ -1,8 +1,11 @@
 import React, { Component } from 'react'
 import { Route, Switch } from 'react-router-dom'
 import axios from 'axios'
-import apiUrl from './server.js'
-import Main from './Main.js'
+import { apiUrl } from './server.js'
+import Main from '../Main.js'
+import Button from '@material-ui/core/Button'
+import Card from '@material-ui/core/Card'
+import TextField from '@material-ui/core/TextField'
 import './Login.css'
 
 export default class Login extends Component {
@@ -16,11 +19,20 @@ export default class Login extends Component {
     }
   }
 
+  clearControlledFields = () => {
+    this.setState({
+      email: "",
+      password: ""
+    })
+  }
+
   // captures user input and sets it as this component's state
   onChange = e => {
     const state = this.state
     state[e.target.name] = e.target.value
     this.setState(state)
+    console.log(this.setState(state))
+    this.props.setLoggedInEmail(this.state.email)
   }
 
   // form submission: sends the current state as the params for signup
@@ -40,22 +52,26 @@ export default class Login extends Component {
           state: { token: this.state.token }
         })
       })
-    .catch(err => console.error(err))
+      .then(this.clearControlledFields)
+      .catch(err => console.error(err))
+      .then(this.clearControlledFields)
   }
 
   render() {
     const { email, password } = this.state
     return (
       <div>
-        <form className="Login-form" onSubmit={this.onSubmit}>
-          <label> Log into your account </label>
-          <br />
-          <input type="email" placeholder="email" name="email" value={email} onChange={this.onChange}></input>
-          <br />
-          <input type="password" placeholder="password" name="email" value={password} onChange={this.onChange}></input>
-          <br />
-          <button type="submit" id="login-button">Login</button>
-        </form>
+        <Card className="Login-form">
+          <form onSubmit={this.onSubmit}>
+            <label> Log into your account </label>
+            <br />
+              <TextField type="email" label="email" placeholder="email" name="email" value={email} onChange={this.onChange}></TextField>
+              <br />
+              <TextField type="password" label="password" placeholder="password" name="email" value={password} onChange={this.onChange}></TextField>
+              <br />
+                <Button type="submit" id="login-button">Login</Button>
+          </form>
+        </Card>
       </div>
     )
   }

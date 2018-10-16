@@ -3,8 +3,9 @@ import { Link } from 'react-router-dom';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import './App.css';
 import Routes from './Routes.js';
-import Login from './Login';
-import Register from './Register';
+import Login from './auth/Login';
+import Register from './auth/Register';
+import AppBar from '@material-ui/core/AppBar'
 
 class App extends Component {
 
@@ -19,23 +20,31 @@ class App extends Component {
     this.setState({viewLink: newState})
   }
 
+  setLoggedInEmail = email => {
+    this.setState({loggedInEmail: email})
+  }
+
+  getLoggedInEmail = () => {
+    return this.setState.loggedInEmail
+  }
+
   render() {
     // if (this.state.viewLink === 'view') {
-      return (
-      <BrowserRouter>
+      return (     
         <div className="App">
-          <nav>
+          <AppBar position="sticky" className="background">
+            <nav>
             {/* <Link to="/" className="links" id="home-link">HOME</Link> */}
             {/* logout success should reroute user back to home page */}
-            <Register>Register</Register>
+            <Link to="/sign-up" className="links nav">Register</Link>
             {/* mount Register User component */}
-            <Login>Login</Login>
+            <Link to="/sign-in" className="links nav">Login</Link>
             {/* mount Login user component */}
-          </nav>
+              </nav>
+          </AppBar>
         <Routes setViewLinkState={this.setViewLinkState} viewLinkState={this.state.viewLink} />
         {/* load routes and pass view state and setter method as props */}
         </div>
-      </BrowserRouter>
       );
     // } else {
     //   return (
