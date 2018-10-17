@@ -1,11 +1,11 @@
 import React, { Component } from 'react'
 import axios from 'axios'
-import { Link } from 'react-router-dom'
+import { withRouter,Link } from 'react-router-dom'
 import { apiUrl } from '../server.js'
 import './Item.css'
 import Nav from '../shared/Nav.js'
 
-export default class ItemForm extends Component {
+class ItemIndex extends Component {
   constructor(props) {
     super(props)
 
@@ -51,3 +51,5 @@ export default class ItemForm extends Component {
     )
   }
 }
+
+export default withRouter(ItemIndex)

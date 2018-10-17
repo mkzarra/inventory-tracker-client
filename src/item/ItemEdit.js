@@ -2,8 +2,9 @@ import React, { Component } from 'react'
 import axios from 'axios'
 import { apiUrl } from '../server'
 import Nav from '../shared/Nav'
+import withRouter from 'react-router-dom/withRouter';
 
-export default class ItemEdit extends Component {
+class ItemEdit extends Component {
   constructor(props) {
     super(props)
     this.state = {
@@ -101,3 +102,5 @@ export default class ItemEdit extends Component {
   }
   
 }
+
+export default withRouter(ItemEdit)
