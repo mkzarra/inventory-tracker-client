@@ -1,6 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import './Header.scss'
+import Nav from '../shared/Nav'
 
 const authenticatedOptions = (
   <React.Fragment>
@@ -19,6 +20,7 @@ const unauthenticatedOptions = (
 const alwaysOptions = (
   <React.Fragment>
     <Link to="/">Home</Link>
+    <Nav />
   </React.Fragment>
 )
 
