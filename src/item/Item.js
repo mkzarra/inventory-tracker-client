@@ -6,12 +6,12 @@ const Item = props => {
   return (
     <div className="item-div">
       <div className="item-header">
-        <div className="item-id">ID: {props._id}</div>
-        <div className="item-name">name: {props.name}</div>
-        <div className="item-storage">storage: {props.storage}</div>
-        <div className="item-perishable">perishable: {props.perishable}</div>
-        <div className="item-volume">volume: {props.volume}</div>
-        <div className="item-unit">unit: {props.unit}</div>
+        <h3 className="item-name">Item: {props.name}</h3>
+        <p className="item-storage">Storage: {props.storage}</p>
+        <p className="item-perishable">Perishable: {props.perishable}</p>
+        <p className="item-volume">Volume: {props.volume}</p>
+        <p className="item-unit">Unit: {props.unit}</p>
+        <p className="item-id">ID: {props._id}</p>
       </div>
     </div>
   )

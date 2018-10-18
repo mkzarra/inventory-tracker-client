@@ -1,9 +1,9 @@
-import React, { Component } from 'react'
+import React from 'react'
 import { withRouter } from 'react-router-dom'
 import { signOut } from '../api'
 import messages from '../messages'
 
-class Logout extends Component {
+class Logout extends React.Component {
   componentDidMount() {
     const { flash, history, clearUser, user } = this.props
     

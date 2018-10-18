@@ -3,7 +3,6 @@ import { withRouter } from 'react-router-dom'
 // import axios from 'axios'
 import { handleErrors, signUp, signIn } from '../api'
 import messages from '../messages'
-import apiUrl from '../../server.js'
 import Main from '../../Main.js'
 import './Register.css'
 
