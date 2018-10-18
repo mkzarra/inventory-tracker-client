@@ -19,7 +19,7 @@ class ChangePWForm extends Component {
   changePwd = e => {
     e.preventDefault()
 
-    const { oldPwd, newPwd } = this.state
+    // const { oldPwd, newPwd } = this.state
     const { flash, history, user } = this.props
     
     changePwd(this.state, user)

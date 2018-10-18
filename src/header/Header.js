@@ -1,12 +1,13 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import './Header.scss'
-import Nav from '../shared/Nav'
 
 const authenticatedOptions = (
   <React.Fragment>
     <Link to="/change-password">Change Password</Link>
     <Link to="/sign-out">Logout</Link>
+    <Link to="/items">Items</Link>
+    <Link to="/items/new">Add Item</Link>
   </React.Fragment>
 )
 
@@ -20,7 +21,6 @@ const unauthenticatedOptions = (
 const alwaysOptions = (
   <React.Fragment>
     <Link to="/">Home</Link>
-    <Nav />
   </React.Fragment>
 )
 

@@ -1,8 +1,8 @@
 import React, {Component} from 'react'
 import axios from 'axios'
 import { apiUrl } from '../server'
-import Nav from '../shared/Nav'
 import ItemForm from './ItemForm'
+import './Item.css'
 
 export default class ItemEdit extends Component {
   constructor(props) {
@@ -39,7 +39,6 @@ export default class ItemEdit extends Component {
     
     return (
       <React.Fragment>
-        <Nav />
         <ItemForm
           action="create"
           item={item}

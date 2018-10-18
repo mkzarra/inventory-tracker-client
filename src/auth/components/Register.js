@@ -21,7 +21,7 @@ class Register extends Component {
   signUp = e => {
     e.preventDefault()
 
-    const { email, password, password_confirmation } = this.state
+    // const { email, password, password_confirmation } = this.state
     const { flash, history, setUser } = this.props
     
     signUp(this.state)

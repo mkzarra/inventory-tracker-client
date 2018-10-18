@@ -1,7 +1,7 @@
 import React from 'react'
 import axios from 'axios'
 import { apiUrl } from '../server'
-import Nav from '../shared/Nav'
+import './Item.css'
 
 export default class MovieIndex extends React.Component {
   constructor(props) {
@@ -21,7 +21,6 @@ export default class MovieIndex extends React.Component {
 
     return (
       <React.Fragment>
-        <Nav />
         <h4 className="item-name">Item: {item.name}</h4>
         <p className="item-storage">Storage: {item.storage}</p>
         <p className="item-expiration">Expiration: {item.expiration}</p>

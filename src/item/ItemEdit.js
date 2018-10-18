@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 import axios from 'axios'
 import { apiUrl } from '../server'
-import Nav from '../shared/Nav'
 import withRouter from 'react-router-dom/withRouter';
+import './Item.css'
 
 class ItemEdit extends Component {
   constructor(props) {
@@ -45,7 +45,6 @@ class ItemEdit extends Component {
     
     return (
       <React.Fragment>
-        <Nav />
         <h1>Edit Item</h1>
         
         <br />

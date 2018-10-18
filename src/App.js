@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Route, Link } from 'react-router-dom';
+import { Route } from 'react-router-dom';
 import './App.css';
 import AuthenticateRoute from './auth/components/AuthenticateRoute'
 import Login from './auth/components/Login';
@@ -7,6 +7,9 @@ import Register from './auth/components/Register';
 import ChangePwdForm from './auth/components/ChangePWForm'
 import Logout from './auth/components/Logout'
 import Header from './header/Header'
+import Home from './Home'
+import ItemIndex from './item/ItemIndex';
+import ItemNew from './item/ItemNew'
 
 class App extends Component {
 
@@ -52,6 +55,15 @@ class App extends Component {
           )} />
           <AuthenticateRoute user={user} path="/change-password" render={() => (
             <ChangePwdForm flash={this.flash} user={user} />
+          )} />
+          <Route path="/" render={() => (
+            <Home />
+          )} />
+          <AuthenticateRoute user={user} path="/items" render={() => (
+            <ItemIndex user={user} />
+          )} />
+          <AuthenticateRoute user={user} path="/items/new" render={() => (
+            <ItemNew user={user} />
           )} />
         </main>
       </React.Fragment>

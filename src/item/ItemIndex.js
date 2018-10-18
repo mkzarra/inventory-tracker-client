@@ -3,7 +3,6 @@ import axios from 'axios'
 import { withRouter,Link } from 'react-router-dom'
 import { apiUrl } from '../server.js'
 import './Item.css'
-import Nav from '../shared/Nav.js'
 
 class ItemIndex extends Component {
   constructor(props) {
@@ -38,7 +37,6 @@ class ItemIndex extends Component {
 
     return (
       <React.Fragment>
-        <Nav />
 
         <h1>Pantry</h1>
 

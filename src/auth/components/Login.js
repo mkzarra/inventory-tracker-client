@@ -30,7 +30,7 @@ class Login extends Component {
   signIn = e => {
     e.preventDefault()
 
-    const { email, password } = this.state
+    // const { email, password } = this.state
     const { flash, history, setUser } = this.props
     
     signIn(this.state)
