@@ -1,5 +1,16 @@
 #login-button {
-  border-radius: 8px;
+  border-radius: 4px;
   border: rgb(100, 154, 199);
   background: rgb(100, 154, 199);
+  margin: .5%;
 }
+
+input, label {
+  margin: .2%;
+}
+
+label {
+  width: 1em;
+  padding: .5em; 
+}
+

@@ -13,6 +13,7 @@ const ItemForm = props => {
       <input
           type="text"
           name="name"
+          placeholder="name"
           value={item.name}
           onChange={handleChange}
         />
@@ -21,6 +22,7 @@ const ItemForm = props => {
         <input
           type="text"
           name="category"
+          placeholder="category"
           value={item.category}
           onChange={handleChange}
         />
@@ -29,6 +31,7 @@ const ItemForm = props => {
         <input
           type="text"
           name="storage"
+          placeholder="storage"
           value={item.storage}
           onChange={handleChange}
         />
@@ -37,6 +40,7 @@ const ItemForm = props => {
         <input
           type="date"
           name="expiration"
+          placeholder="expiration"
           value={item.expiration}
           onChange={handleChange}
         />
@@ -45,6 +49,7 @@ const ItemForm = props => {
         <input
           type="number"
           name="volume"
+          placeholder="volume"
           value={item.volume}
           onChange={handleChange}
         />
@@ -53,6 +58,7 @@ const ItemForm = props => {
         <input
           type="text"
           name="unit"
+          placeholder="unit"
           value={item.unit}
           onChange={handleChange}
         />

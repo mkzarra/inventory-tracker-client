@@ -13,9 +13,8 @@ export default class ItemEdit extends Component {
         category: '',
         storage: '',
         expiration: '',
-        volume: 0,
+        volume: '',
         unit: '',
-        owner: null
       }
     }
   }
@@ -32,6 +31,7 @@ export default class ItemEdit extends Component {
     const res = await axios.post(`${apiUrl}/items`, itemParams)
 
     this.props.history.push(`/items/${res.data.item.id}/show`)
+    console.log(res.data)
   }
 
   render() {

@@ -26,3 +26,40 @@
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
 }
+
+.links {
+  text-decoration: none;
+  padding: 10px;
+  background: rgb(6, 83, 41);
+  color: rgb(220, 228, 223);
+  margin: 5px;
+  border-radius: 4px;
+  display: inline;
+}
+
+.links:hover {
+  background: rgb(9, 74, 112);
+}
+
+.main-header {
+  background: rgb(75, 75, 75);
+  margin: auto;
+  display: block;
+  padding: 2em;
+}
+
+.title {
+  margin: 2%;
+  color: rgb(142, 186, 204)
+}
+
+body {
+  background: rgb(248, 233, 214);
+  background-size: cover; 
+  text-align: center
+}
+
+h3 {
+  text-align: center;
+}
+
