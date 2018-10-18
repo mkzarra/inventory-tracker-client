@@ -2,8 +2,11 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
-import {BrowserRouter as Router} from 'react-router-dom'
+import { BrowserRouter as Router } from 'react-router-dom'
+import axios from 'axios'
 import registerServiceWorker from './registerServiceWorker';
+
+axios.defaults.headers['Content-Type'] ='application.json'
 
 ReactDOM.render(
   <Router basename={process.env.PUBLIC_URL}>

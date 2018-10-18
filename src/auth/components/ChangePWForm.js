@@ -2,7 +2,6 @@ import React, { Component } from "react"
 // import axios from 'axios'
 import { withRouter } from 'react-router-dom'
 import {handleErrors, changePwd} from '../api'
-import apiUrl from '../../server.js'
 import "./ChangePWForm.css"
 import messages from "../messages";
 
