@@ -1,10 +1,12 @@
 import React, {Component} from 'react'
 import axios from 'axios'
 import { apiUrl } from '../server'
-import ItemForm from './ItemForm'
 import './Item.css'
+import { withRouter } from 'react-router-dom';
+import { newItem } from './api'
+import messages from './messages'
 
-export default class ItemEdit extends Component {
+class ItemEdit extends Component {
   constructor(props) {
     super(props)
     this.state = {
@@ -24,29 +26,103 @@ export default class ItemEdit extends Component {
     this.setState({ item: newItem })
   }
 
-  handleSubmit = async e => {
+  newItem = e => {
     e.preventDefault()
 
-    const itemParams = JSON.stringify({ item: this.state.item })
-    const res = await axios.post(`${apiUrl}/items`, itemParams)
-
-    this.props.history.push(`/items/${res.data.item.id}/show`)
-    console.log(res.data)
+    const { flash, history, setItem } = this.props
+    
+    newItem(this.state)
+      .then(res => res.ok ? res : new Error())
+      .then(res => res.json())
+      .then(res => setItem(res.item))
+      .then(() => flash(messages.createItemSuccess, 'flash-success'))
+      .then(() => history.push('/items'))
+      .catch(() => flash(messages.createItemFailure, 'flash-error'))
   }
+
+  // handleSubmit = async e => {
+  //   e.preventDefault()
+
+  //   const itemParams = JSON.stringify({ item: this.state.item })
+  //   const res = await axios.post(`${apiUrl}/items`, itemParams)
+
+  //   this.props.history.push(`/items/${res.data.item.id}/show`)
+  //   console.log(res.data)
+  // }
 
   render() {
     const { item } = this.state
+
     
     return (
       <React.Fragment>
-        <ItemForm
+        <h1>Add Item</h1>
+      <form className="item-form" onSubmit={this.newItem}>
+      <br />
+      <input
+          type="text"
+          name="name"
+          placeholder="name"
+          value={item.name}
+          onChange={this.handleChange}
+        />
+        
+        <br />
+        <input
+          type="text"
+          name="category"
+          placeholder="category"
+          value={item.category}
+          onChange={this.handleChange}
+        />
+        
+        <br />
+        <input
+          type="text"
+          name="storage"
+          placeholder="storage"
+          value={item.storage}
+          onChange={this.handleChange}
+        />
+        
+        <br />
+        <input
+          type="date"
+          name="expiration"
+          placeholder="expiration"
+          value={item.expiration}
+          onChange={this.handleChange}
+        />
+
+        <br />
+        <input
+          type="number"
+          name="volume"
+          placeholder="volume"
+          value={item.volume}
+          onChange={this.handleChange}
+        />
+
+        <br />
+        <input
+          type="text"
+          name="unit"
+          placeholder="unit"
+          value={item.unit}
+          onChange={this.handleChange}
+        />
+
+          <button type="submit" id="new-item" className="item-button">Submit</button>
+          </form>
+        {/* <ItemForm
           action="create"
           item={item}
           handleChange={this.handleChange}
           handleSubmit={this.handleSubmit}
-        />
+        /> */}
       </React.Fragment>
     )
   }
-
 }
+
+export default withRouter(ItemEdit)

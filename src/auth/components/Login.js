@@ -6,6 +6,8 @@ import messages from '../messages'
 // import Card from '@material-ui/core/Card'
 // import TextField from '@material-ui/core/TextField'
 import './Login.css'
+const store = require('../../store')
+
 
 class Login extends Component {
   constructor() {
@@ -36,7 +38,10 @@ class Login extends Component {
     signIn(this.state)
       .then(res => res.ok ? res : new Error())
       .then(res => res.json())
-      .then(res => setUser(res.user))
+      .then(res => {
+        setUser(res.user)
+        store.user = res.user
+      })
       .then(() => flash(messages.signInSuccess, 'flash-success'))
       .then(() => history.push('/'))
       .catch(() => flash(messages.signInFailure, 'flash-error'))

@@ -24,6 +24,8 @@ class App extends Component {
   }
 
   setUser = user => this.setState({ user })
+
+  setItem = item => this.setState({item})
   
   clearUser = () => this.setState({ user: null })
 
@@ -62,8 +64,8 @@ class App extends Component {
           <AuthenticateRoute user={user} path="/items" render={() => (
             <ItemIndex user={user} />
           )} />
-          <AuthenticateRoute user={user} path="/items/new" render={() => (
-            <ItemNew user={user} />
+          <AuthenticateRoute user={user} path="/items" render={() => (
+            <ItemNew flash={this.flash} user={user} setItem={this.setItem}/>
           )} />
         </main>
       </React.Fragment>
