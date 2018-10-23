@@ -9,15 +9,15 @@ export const handleErrors = res => {
   }
 }
 
-export const newItem = data => {
-  console.log(data)
+export const newItem = item => {
+  console.log(item)
   return fetch(`${apiUrl}/items`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
       'Authorization': `Bearer ${store.user.token}`
     },
-    data
+    item
   })
 }
 

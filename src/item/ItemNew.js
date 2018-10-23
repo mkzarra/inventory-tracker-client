@@ -1,13 +1,13 @@
 import React, {Component} from 'react'
-import axios from 'axios'
-import { apiUrl } from '../server'
+// import axios from 'axios'
+// import { apiUrl } from '../server'
 import './Item.css'
 import { withRouter } from 'react-router-dom';
 import { newItem } from './api'
 import messages from './messages'
 const store = require('../store')
 
-class ItemEdit extends Component {
+class ItemNew extends Component {
   constructor(props) {
     super(props)
     this.state = {
@@ -17,8 +17,8 @@ class ItemEdit extends Component {
         storage: '',
         expiration: '',
         volume: '',
-        unit: '',
-        owner: props.user._id
+        unit: ''
+        // owner: props.user._id
       }
     }
   }
@@ -39,7 +39,6 @@ class ItemEdit extends Component {
       .then(res => {
         setItem(res.item)        
         store.item = res.item
-        res.item.owner = store.user.id
         console.log(res.item)
       })
       .then(() => flash(messages.createItemSuccess, 'flash-success'))
@@ -132,4 +131,4 @@ class ItemEdit extends Component {
   }
 }
 
-export default withRouter(ItemEdit)
+export default withRouter(ItemNew)
