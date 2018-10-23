@@ -5,6 +5,7 @@ import './Item.css'
 import { withRouter } from 'react-router-dom';
 import { newItem } from './api'
 import messages from './messages'
+const store = require('../store')
 
 class ItemEdit extends Component {
   constructor(props) {
@@ -17,6 +18,7 @@ class ItemEdit extends Component {
         expiration: '',
         volume: '',
         unit: '',
+        owner: props.user._id
       }
     }
   }
@@ -34,7 +36,12 @@ class ItemEdit extends Component {
     newItem(this.state)
       .then(res => res.ok ? res : new Error())
       .then(res => res.json())
-      .then(res => setItem(res.item))
+      .then(res => {
+        setItem(res.item)        
+        store.item = res.item
+        res.item.owner = store.user.id
+        console.log(res.item)
+      })
       .then(() => flash(messages.createItemSuccess, 'flash-success'))
       .then(() => history.push('/items'))
       .catch(() => flash(messages.createItemFailure, 'flash-error'))

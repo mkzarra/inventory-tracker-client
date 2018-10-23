@@ -26,7 +26,7 @@ export const getItemIndex = () => {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',
-      // 'Authorization': `Bearer ${store.user.token}`
+      'Authorization': `Bearer ${store.user.token}`
     }
   })
 }
@@ -36,7 +36,7 @@ export const getItemByName = item => {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',
-      // 'Authorization': `Bearer ${store.user.token}`
+      'Authorization': `Bearer ${store.user.token}`
     },
     item: item.name
   })
@@ -47,7 +47,7 @@ export const getItemByCategory = item => {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',
-      // 'Authorization': `Bearer ${store.user.token}`
+      'Authorization': `Bearer ${store.user.token}`
     },
     item: item.category
   })
@@ -58,7 +58,7 @@ export const getItemByExpiration = item => {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',
-      // 'Authorization': `Bearer ${store.user.token}`
+      'Authorization': `Bearer ${store.user.token}`
     },
     item: item.expiration
   })
@@ -69,7 +69,7 @@ export const getItemByVolume = item => {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',
-      // 'Authorization': `Bearer ${store.user.token}`
+      'Authorization': `Bearer ${store.user.token}`
     },
     item: item.volume
   })
@@ -80,7 +80,7 @@ export const getItemByStorage = item => {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',
-      // 'Authorization': `Bearer ${store.user.token}`
+      'Authorization': `Bearer ${store.user.token}`
     },
     item: item.storage
   })
@@ -91,7 +91,7 @@ export const updateItem = data => {
     method: 'PATCH',
     headers: {
       'Content-Type': 'application/json',
-      // 'Authorization': `Bearer ${store.user.token}`
+      'Authorization': `Bearer ${store.user.token}`
     },
     data
   })
@@ -102,7 +102,7 @@ export const deleteItem = data => {
     method: 'DELETE',
     headers: {
       'Content-Type': 'application/json',
-      // 'Authorization': `Bearer ${store.user.token}`
+      'Authorization': `Bearer ${store.user.token}`
     }
   })
 }
