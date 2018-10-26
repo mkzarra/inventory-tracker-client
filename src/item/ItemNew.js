@@ -8,8 +8,8 @@ import messages from './messages'
 const store = require('../store')
 
 class ItemNew extends Component {
-  constructor(props) {
-    super(props)
+  constructor() {
+    super()
     this.state = {
       item: {
         name: '',
