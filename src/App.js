@@ -18,6 +18,7 @@ class App extends Component {
 
     this.state = {
       user: null,
+      item: null,
       flashMessage: '',
       flashType: null
     }
