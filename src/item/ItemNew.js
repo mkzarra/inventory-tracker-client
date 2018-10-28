@@ -8,8 +8,8 @@ import messages from './messages'
 const store = require('../store')
 
 class ItemNew extends Component {
-  constructor() {
-    super()
+  constructor(props) {
+    super(props)
     this.state = {
       item: {
         name: '',
@@ -18,7 +18,6 @@ class ItemNew extends Component {
         expiration: '',
         volume: '',
         unit: ''
-        // owner: props.user._id
       }
     }
   }
@@ -34,7 +33,7 @@ class ItemNew extends Component {
     const { flash, history, setItem } = this.props
     
     newItem(this.state)
-      .then(res => res.ok ? res : new Error())
+      .then(res => res.ok ? res : new Error('Received status in 400 or 500 range'))
       .then(res => res.json())
       .then(res => {
         setItem(res.item)        
