@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import axios from 'axios'
 import { withRouter,Link } from 'react-router-dom'
 import { apiUrl } from '../server.js'
+import { getItemIndex, deleteItem, handleErrors } from './api'
 import './Item.css'
 
 class ItemIndex extends Component {
@@ -11,6 +12,20 @@ class ItemIndex extends Component {
     this.state = {
       items: []
     }
+  }
+
+  getItemIndex = e => {
+    e.preventDefault()
+
+    const { setItem } = this.props
+    
+    getItemIndex(this.state)
+      .then(handleErrors)
+      .then(res => res.json())
+      .then(res => {
+        setItem(res.item)
+        console.log(res.item)
+      })
   }
 
   async componentDidMount() {
@@ -26,14 +41,14 @@ class ItemIndex extends Component {
   }
 
   render() {
-    const itemRows = this.state.items.map(item => {
-      return (
-        <tr key={item.id}>
+    const itemRows = this.state.items.map(item => 
+      
+        <tr key={item}>
           <td><Link to={`/items/${item.id}/show`}></Link></td>
           <td><Link to={`/items/${item.id}/edit`}></Link> | <a href="" onClick={e => this.deleteItem(e, item.id)}>Remove</a> </td>
         </tr>
-      )
-    })
+      
+    )
 
     return (
       <React.Fragment>
