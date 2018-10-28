@@ -10,14 +10,16 @@ export const handleErrors = res => {
 }
 
 export const newItem = item => {
+  debugger
+  console.log("this is the data: ")
   console.log(item)
-  return fetch(`${apiUrl}/items`, {
+  return fetch(`${apiUrl}/items/new`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
       'Authorization': `Bearer ${store.user.token}`
     },
-    item
+    body: JSON.stringify(item)
   })
 }
 
@@ -38,7 +40,7 @@ export const getItemByName = item => {
       'Content-Type': 'application/json',
       'Authorization': `Bearer ${store.user.token}`
     },
-    item: item.name
+    body: JSON.stringify(item.name)
   })
 }
 
@@ -49,7 +51,7 @@ export const getItemByCategory = item => {
       'Content-Type': 'application/json',
       'Authorization': `Bearer ${store.user.token}`
     },
-    item: item.category
+    body: JSON.stringify(item.category)
   })
 }
 
@@ -60,7 +62,7 @@ export const getItemByExpiration = item => {
       'Content-Type': 'application/json',
       'Authorization': `Bearer ${store.user.token}`
     },
-    item: item.expiration
+    body: JSON.stringify(item.expiration)
   })
 }
 
@@ -71,7 +73,7 @@ export const getItemByVolume = item => {
       'Content-Type': 'application/json',
       'Authorization': `Bearer ${store.user.token}`
     },
-    item: item.volume
+    body: JSON.stringify(item.volume)
   })
 }
 
@@ -82,23 +84,23 @@ export const getItemByStorage = item => {
       'Content-Type': 'application/json',
       'Authorization': `Bearer ${store.user.token}`
     },
-    item: item.storage
+    body: JSON.stringify(item.storage)
   })
 }
 
-export const updateItem = data => {
-  return fetch(`${apiUrl}/items/${data.id}`, {
+export const updateItem = item => {
+  return fetch(`${apiUrl}/items/${item.id}`, {
     method: 'PATCH',
     headers: {
       'Content-Type': 'application/json',
       'Authorization': `Bearer ${store.user.token}`
     },
-    data
+    body: JSON.stringify(item)
   })
 }
 
-export const deleteItem = data => {
-  return fetch(`${apiUrl}/items/${data.id}`, {
+export const deleteItem = item => {
+  return fetch(`${apiUrl}/items/${item.id}`, {
     method: 'DELETE',
     headers: {
       'Content-Type': 'application/json',
