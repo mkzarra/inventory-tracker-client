@@ -10,23 +10,38 @@ import Header from './header/Header'
 import Home from './Home'
 import ItemIndex from './item/ItemIndex';
 import ItemNew from './item/ItemNew'
+import Item from './item/Item'
+import { deleteItem, updateItem } from './item/api'
 
 class App extends Component {
 
-  constructor() {
-    super()
+  constructor(props) {
+    super(props)
 
     this.state = {
       user: null,
-      item: null,
+      history: [{
+        items: []
+      }],
       flashMessage: '',
       flashType: null
     }
   }
 
+  handleClick(i) {
+    const history = this.state.history
+    const items = this.state.history.items.slice()
+    console.log(items[i])
+    this.setState({
+      history: history.concat([{
+        items
+      }])
+    })
+  }
+
   setUser = user => this.setState({ user })
 
-  setItem = item => this.setState({item})
+  setItem = item => this.setState({ history: item })
   
   clearUser = () => this.setState({ user: null })
 
@@ -40,7 +55,7 @@ class App extends Component {
 
   render() {
     const { flashMessage, flashType, user } = this.state
-    
+
     return (
       <React.Fragment>
         <Header user={user} />

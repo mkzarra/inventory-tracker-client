@@ -10,9 +10,6 @@ export const handleErrors = res => {
 }
 
 export const newItem = item => {
-  debugger
-  console.log("this is the data: ")
-  console.log(item)
   return fetch(`${apiUrl}/items/new`, {
     method: 'POST',
     headers: {

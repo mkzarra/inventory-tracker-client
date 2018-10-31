@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import axios from 'axios'
+import Item from './Item'
 import { withRouter,Link } from 'react-router-dom'
 import { apiUrl } from '../server.js'
 import { getItemIndex, deleteItem, handleErrors } from './api'
@@ -14,52 +15,58 @@ class ItemIndex extends Component {
     }
   }
 
-  getItemIndex = e => {
-    e.preventDefault()
+  // getItemIndex = e => {
+  //   e.preventDefault()
 
-    const { setItem } = this.props
+  //   const { setItem } = this.props
     
-    getItemIndex(this.state)
-      .then(handleErrors)
-      .then(res => res.json())
+  //   getItemIndex(this.state)
+  //     .then(handleErrors)
+  //     .then(res => res.json())
+  //     .then(res => {
+  //       setItem(res.item)
+  //       console.log(res.item)
+  //     })
+  // }
+
+  componentDidMount() {
+    axios.get(`${apiUrl}/items`)
       .then(res => {
-        setItem(res.item)
-        console.log(res.item)
+        console.log(res.data.items)
+        this.setState({items: res.data.items})
       })
   }
 
-  async componentDidMount() {
-    const response = await axios.get(`${apiUrl}/items`)
-    this.setState({ items: response.data.items })
-  }
-
-  async deleteItem(e, itemId) {
+  deleteItem(e, itemId) {
     e.preventDefault()
 
-    await axios.delete(`${apiUrl}/items/${itemId}`)
+    axios.delete(`${apiUrl}/items/${itemId}`)
     this.setState({items: this.state.items.filter(item => item.id !== itemId)})
   }
 
   render() {
-    const itemRows = this.state.items.map(item => 
-      
-        <tr key={item}>
-          <td><Link to={`/items/${item.id}/show`}></Link></td>
-          <td><Link to={`/items/${item.id}/edit`}></Link> | <a href="" onClick={e => this.deleteItem(e, item.id)}>Remove</a> </td>
-        </tr>
-      
-    )
+    const items = this.state.items
+    const renderItems = items.map(item => {
+      return (
+      <li key={item._id} className="card">
+        <div className="item-div">
+          <h3 className="item-name">Item: {item.name}</h3>
+          <p className="item-storage">Storage: {item.storage}</p>
+          <p className="item-expiration">Expiration: {item.expiration.slice(0,10)}</p>
+          <p className="item-volume">Volume: {item.volume}</p>
+          <p className="item-unit">Unit: {item.unit}</p>
+          <p className="item-id">ID: {item._id}</p>
+          <button className="remove" type="submit" value={this.props._id} >Remove</button>
+          <button className="update" value={this.props._id} onClick={this.props.onClick}>Update</button>
+          </div>
+          <br />
+      </li>
+      )
+    })
 
     return (
-      <React.Fragment>
-
-        <h1>Pantry</h1>
-
-        <table>
-          <tbody>
-            {itemRows}
-          </tbody>
-        </table>
+      <React.Fragment>  
+        {renderItems}
       </React.Fragment>
     )
   }
