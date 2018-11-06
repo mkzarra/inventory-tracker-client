@@ -15,6 +15,20 @@ class ItemIndex extends Component {
     }
   }
 
+  handleChange = e => {
+    this.setState({name: e.target.value})
+  }
+
+  handleSubmit = e => {
+    e.preventDefault()
+
+    axios.delete(`${apiUrl}/items/${this.state.items.map(item => item._id)}`)
+      .then(res => {
+        console.log(res.data.items)
+       
+      })
+  }
+
   // getItemIndex = e => {
   //   e.preventDefault()
 
@@ -37,12 +51,13 @@ class ItemIndex extends Component {
       })
   }
 
-  deleteItem(e, itemId) {
-    e.preventDefault()
-
-    axios.delete(`${apiUrl}/items/${itemId}`)
-    this.setState({items: this.state.items.filter(item => item.id !== itemId)})
-  }
+  // deleteItem(itemId) {    
+  //   axios.delete(`${apiUrl}/items/${itemId}`)
+  //     .then(res => { 
+  //       console.log(res.data.items)
+  //       this.setState({items: res.data.items.map(item => itemId = item._id)})
+  //     })
+  // }
 
   render() {
     const items = this.state.items
@@ -56,7 +71,7 @@ class ItemIndex extends Component {
           <p className="item-volume">Volume: {item.volume}</p>
           <p className="item-unit">Unit: {item.unit}</p>
           <p className="item-id">ID: {item._id}</p>
-          <button className="remove" type="submit" value={item._id}>Remove</button>
+          <button className="remove" type="submit" name="remove" value={item._id} onChange={this.handleChange} onClick={this.handleSubmit}>Remove</button>
           <button type="submit" className="update" value={item._id} onClick={this.props.onClick}>Update</button>
           </div>
           <br />
