@@ -56,8 +56,8 @@ class ItemIndex extends Component {
           <p className="item-volume">Volume: {item.volume}</p>
           <p className="item-unit">Unit: {item.unit}</p>
           <p className="item-id">ID: {item._id}</p>
-          <button className="remove" type="submit" value={this.props._id} >Remove</button>
-          <button className="update" value={this.props._id} onClick={this.props.onClick}>Update</button>
+          <button className="remove" type="submit" value={item._id}>Remove</button>
+          <button type="submit" className="update" value={item._id} onClick={this.props.onClick}>Update</button>
           </div>
           <br />
       </li>
