@@ -1,8 +1,8 @@
 import React from 'react'
 import './Item.css'
 
-function Item(props)  {
-console.log(props.items)
+const item = (props) =>  {
+  console.log(props.items)
   return (
     <li>
       <div className="item-div">
@@ -19,4 +19,4 @@ console.log(props.items)
   )
 }
 
-export default Item
+export default item

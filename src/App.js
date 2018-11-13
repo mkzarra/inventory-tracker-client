@@ -45,6 +45,13 @@ class App extends Component {
   
   clearUser = () => this.setState({ user: null })
 
+  handleDeleteItem = event => {
+    this.state.items.map(item => {
+      // TODO: use axios to make 'DELETE'
+      // api call item and remove from DOM
+    })
+  }
+
   flash = (message, type) => {
     this.setState({ flashMessage: message, flashType: type })
     
