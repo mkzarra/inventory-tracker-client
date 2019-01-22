@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
 import axios from 'axios'
 import Item from './Item'
-import { withRouter,Link } from 'react-router-dom'
+import { withRouter } from 'react-router-dom'
 import { apiUrl } from '../server.js'
-import { getItemIndex, deleteItem, handleErrors } from './api'
+// import { getItemIndex, deleteItem, handleErrors } from './api'
 import './Item.css'
 
 class ItemIndex extends Component {
@@ -11,22 +11,29 @@ class ItemIndex extends Component {
     super(props)
 
     this.state = {
-      items: []
+      items: [],
+
     }
   }
 
   handleChange = e => {
-    this.setState({name: e.target.value})
+    this.setState({ name: e.target.value })
   }
 
-  handleSubmit = e => {
+  handleSubmit = (e) => {
+    debugger
     e.preventDefault()
-
-    axios.delete(`${apiUrl}/items/${this.state.items.map(item => item._id)}`)
+    console.log(this.props.user.token)
+    axios.delete(`${apiUrl}/items/${e.target.value}`, { headers: { 'Authorization': 'Bearer ' + this.props.user.token } })
       .then(res => {
-        console.log(res.data.items)
-       
+        console.log(res.data.items);
+        console.log(res.data);
       })
+  }
+
+  deleteItemHandler = (e, data) => {
+    e.preventDefault();
+    console.log('[deleteItemHandler] in ItemIndex container', data);
   }
 
   // getItemIndex = e => {
@@ -44,6 +51,7 @@ class ItemIndex extends Component {
   // }
 
   componentDidMount() {
+    console.log('[componentDidMount] ItemIndex', this.props.user)
     axios.get(`${apiUrl}/items`)
       .then(res => {
         console.log(res.data.items)
@@ -63,19 +71,29 @@ class ItemIndex extends Component {
     const items = this.state.items
     const renderItems = items.map(item => {
       return (
-      <li key={item._id} className="card">
-        <div className="item-div">
-          <h3 className="item-name">Item: {item.name}</h3>
-          <p className="item-storage">Storage: {item.storage}</p>
-          <p className="item-expiration">Expiration: {item.expiration.slice(0,10)}</p>
-          <p className="item-volume">Volume: {item.volume}</p>
-          <p className="item-unit">Unit: {item.unit}</p>
-          <p className="item-id">ID: {item._id}</p>
-          <button className="remove" type="submit" name="remove" value={item._id} onChange={this.handleChange} onClick={this.handleSubmit}>Remove</button>
-          <button type="submit" className="update" value={item._id} onClick={this.props.onClick}>Update</button>
-          </div>
-          <br />
-      </li>
+        <Item key={item._id}
+          itemName={item.name}
+          storage={item.storage}
+          expiration={item.expiration.slice(0, 10)}
+          volume={item.volume}
+          unit={item.unit}
+          id={item._id}
+          clicked={this.handleSubmit}
+        />
+
+      // <li key={item._id} className="card">
+      //   <div className="item-div">
+      //     <h3 className="item-name">Item: {item.name}</h3>
+      //     <p className="item-storage">Storage: {item.storage}</p>
+      //     <p className="item-expiration">Expiration: {item.expiration.slice(0,10)}</p>
+      //     <p className="item-volume">Volume: {item.volume}</p>
+      //     <p className="item-unit">Unit: {item.unit}</p>
+      //     <p className="item-id">ID: {item._id}</p>
+      //     <button className="remove" type="submit" name="remove" value={item._id} onChange={this.handleChange} onClick={this.handleSubmit}>Remove</button>
+      //     <button type="submit" className="update" value={item._id} onClick={this.props.onClick}>Update</button>
+      //     </div>
+      //     <br />
+      // </li>
       )
     })
 

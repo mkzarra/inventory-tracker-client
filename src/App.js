@@ -10,8 +10,7 @@ import Header from './header/Header'
 import Home from './Home'
 import ItemIndex from './item/ItemIndex';
 import ItemNew from './item/ItemNew'
-import Item from './item/Item'
-import { deleteItem, updateItem } from './item/api'
+// import { deleteItem, updateItem } from './item/api'
 
 class App extends Component {
 
@@ -45,13 +44,6 @@ class App extends Component {
   
   clearUser = () => this.setState({ user: null })
 
-  handleDeleteItem = event => {
-    this.state.items.map(item => {
-      // TODO: use axios to make 'DELETE'
-      // api call item and remove from DOM
-    })
-  }
-
   flash = (message, type) => {
     this.setState({ flashMessage: message, flashType: type })
     
@@ -59,6 +51,8 @@ class App extends Component {
 
     this.messageTimeout = setTimeout(() => this.setState({flashMessage: null}), 2000)
   }
+
+  
 
   render() {
     const { flashMessage, flashType, user } = this.state

@@ -6,7 +6,7 @@ import { BrowserRouter as Router } from 'react-router-dom'
 import axios from 'axios'
 import registerServiceWorker from './registerServiceWorker';
 
-axios.defaults.headers['Content-Type'] ='application.json'
+axios.defaults.headers['Content-Type'] = 'application.json'
 
 ReactDOM.render(
   <Router basename={process.env.PUBLIC_URL}>

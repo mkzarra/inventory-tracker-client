@@ -56,11 +56,10 @@ export default class Main extends Component {
   }
 
   formAction = id => {
-    id === null ? "Add" : "Update"
+    !id ? "Add" : "Update"
   }
 
   render() {
-    // TODO: write a function to make this less verbose and repetative
     return (
       <div>
         <AppBar position="sticky" className="background" id="mainApp">

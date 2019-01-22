@@ -23,7 +23,8 @@ class Login extends Component {
   clearControlledFields = () => {
     this.setState({
       email: "",
-      password: ""
+      password: "",
+      token: null
     })
   }
    
@@ -39,7 +40,9 @@ class Login extends Component {
       .then(res => res.ok ? res : new Error())
       .then(res => res.json())
       .then(res => {
+        console.log(res.user)
         setUser(res.user)
+        this.setState({ token: res.user.token });
         store.user = res.user
       })
       .then(() => flash(messages.signInSuccess, 'flash-success'))
