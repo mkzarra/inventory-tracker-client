@@ -80,7 +80,7 @@ export const addToPantry = (data) => {
   return dispatch => {
     dispatch(pantryStart());
     axios.post(apiUrl + '/pantry', {
-      pantryItem: {
+      pantry: {
         ...data.itemId,
         ...data.userId
       },
