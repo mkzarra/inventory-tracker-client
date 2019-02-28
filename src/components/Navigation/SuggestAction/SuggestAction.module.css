@@ -1,0 +1,19 @@
+.SuggestAction {
+  text-align: center;
+  background: rgb(84, 83, 110);
+  border: 1px solid #38374b;
+  color: white;
+  outline: none;
+  cursor: pointer;
+  font: inherit;
+  padding: 10px;
+  margin: 10px;
+  font-weight: bold;
+  transition: 0.2s;
+}
+
+.SuggestAction:hover {
+  background: #76739e;
+  border: 1px solid black;
+  padding: 12px;
+}

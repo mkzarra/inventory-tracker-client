@@ -6,4 +6,13 @@ li {
   box-shadow: 0 2px 3px #ccc;
   padding: 16px;
   text-align: center;
+  transition: transform 0.25 ease;
+}
+
+input[type=checkbox] {
+  display: none;
+}
+
+input[type=checkbox]:checked ~ label > li {
+  transform: scale(2);
 }

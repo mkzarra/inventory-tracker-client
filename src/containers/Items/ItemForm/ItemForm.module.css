@@ -1,0 +1,13 @@
+.ItemForm {
+  margin: 20px auto;
+  width: 80%;
+  text-align: center;
+  box-shadow: 0 2px 3px #9999a7;
+  border: 1px solid #eeeeff;
+  padding: 10px;
+  box-sizing: border-box;
+}
+
+.Hidden {
+  display: none;
+}

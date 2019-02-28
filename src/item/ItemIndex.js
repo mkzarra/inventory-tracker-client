@@ -16,16 +16,40 @@ class ItemIndex extends Component {
     }
   }
 
-  handleChange = e => {
-    this.setState({ name: e.target.value })
+  openEditModal = () => {
+
   }
 
-  handleDelete = (e) => {
-    e.preventDefault()
-    const itemId = e.target.value
-    axios.delete(`${apiUrl}/items/${itemId}`, { headers: { 'Authorization': 'Bearer ' + this.props.user.token } })
-      .then(res => console.log(res.data))
-      .catch(err => console.error(err));
+  handleDelete = (event) => {
+    event.preventDefault();
+    const itemId = event.target.value
+    axios.delete(`${apiUrl}/items/${itemId}`, {
+      headers: {
+        'Authorization': 'Bearer ' + this.props.user.token
+      }
+    })
+      .then(res => {
+        console.log(res.data);
+      })
+      .catch(err => {
+        console.error(err);
+      });
+  }
+
+  handleUpdate = (event) => {
+    event.preventDefault();
+    const itemId = event.target.value
+    axios.patch(`${apiUrl}/items/${itemId}`, {
+      headers: {
+        'Authorization': 'Bearer ' + this.props.user.token
+      }
+    })
+      .then(res => {
+        console.log(res.data);
+      })
+      .catch(err => {
+        console.log(err);
+      });
   }
 
   componentDidMount() {
@@ -33,8 +57,11 @@ class ItemIndex extends Component {
     axios.get(`${apiUrl}/items`)
       .then(res => {
         console.log(res.data.items)
-        this.setState({items: res.data.items.reverse()})
+        this.setState({ items: res.data.items.reverse() })
       })
+      .catch(err => {
+        console.log(err);
+      });
   }
 
   render() {
@@ -48,9 +75,10 @@ class ItemIndex extends Component {
           unit={item.unit}
           id={item._id}
           clicked={this.handleDelete}
+          zoom={this.openEditModal}
         />
-      )
-    })
+      );
+    });
 
     return (
       <React.Fragment>  

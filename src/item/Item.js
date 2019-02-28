@@ -11,11 +11,11 @@ const item = (props) =>  {
         <p className="item-volume" name={props.volume}>Volume: {props.volume}</p>
         <p className="item-unit" name={props.unit}>Unit: {props.unit}</p>
         <p className="item-id" name={props._id}>ID: {props.id}</p>
-      <button className="remove" type="submit" name="remove" value={props.id} onClick={props.clicked}>Remove</button>
-      <button className="update" value={props.id} onClick={props.update}>Update</button>
+        <button className="remove" type="submit" name="remove" value={props.id} onClick={props.clicked}>Remove</button>
+        <button className="update" onClick={props.zoom}>Update</button>      
       </div>
     </li>
-  )
+  );
 }
 
 export default item
