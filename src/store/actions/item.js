@@ -3,7 +3,7 @@ import axios from 'axios';
 import * as actionTypes from './actionTypes';
 import apiUrl from '../../server';
 
-export const itemStart = () => {
+export const itemsStart = () => {
   return {
     type: actionTypes.ITEMS_START
   }

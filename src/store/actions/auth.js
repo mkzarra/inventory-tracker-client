@@ -88,11 +88,13 @@ export const register = (data) => {
 }
 
 export const login = (data) => {
+  console.log(data);
   return dispatch => {
     dispatch(authStart());
+    console.log(apiUrl)
     axios.post(apiUrl + '/sign-in', {
-        credentials: data
-      })
+      credentials: data
+    })
       .then(res => {
         console.log(res.data.user);
         console.log(data);

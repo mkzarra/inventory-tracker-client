@@ -2,10 +2,10 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 import classes from './ItemForm.module.css';
-import Spinner from '../../components/UI/Spinner/Spinner';
-import Input from '../../components/UI/Input/Input';
-import Button from '../../components/UI/Button/Button';
-import * as actions from '../../store/actions/index';
+import Spinner from '../../../components/UI/Spinner/Spinner';
+import Input from '../../../components/UI/Input/Input';
+import Button from '../../../components/UI/Button/Button';
+import * as actions from '../../../store/actions/index';
 
 class ItemForm extends Component {
   state = {

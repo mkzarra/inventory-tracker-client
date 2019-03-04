@@ -1,7 +1,7 @@
 let apiUrl
 
 const apiUrls = {
-  production: '<heroku-url>',
+  production: 'deployedBackEnd', // change this when back end is deployed to heroku
   development: 'http://localhost:4741'
 }
 
@@ -11,6 +11,4 @@ if (window.location.hostname === 'localhost') {
   apiUrl = apiUrls.production
 }
 
-module.exports = {
-  apiUrl
-}
+export default apiUrl;

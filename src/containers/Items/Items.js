@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import * as actions from '../../store/actions/index';
 import PlusSign from '../../components/UI/PlusSign/PlusSign'
 import Item from '../../components/Item/Item';
-import ItemForm from '../ItemForm/ItemForm';
+import ItemForm from './ItemForm/ItemForm';
 import Spinner from '../../components/UI/Spinner/Spinner';
 
 class Items extends Component {
@@ -48,14 +48,13 @@ class Items extends Component {
             id={item._id}
             token={this.props.token}
             userId={this.props.userId}
-            // listId={listId}
             addToPantry={(event) => this.handleAddToPantry(event, item._id)}
           />
         );
       });
     }
 
-    if (!this.props.token || !this.props.lists) {
+    if (!this.props.token) {
       items = <Redirect to="/" />;
     }
 
@@ -92,7 +91,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     onGetItems: (data) => dispatch(actions.getItems(data)),
-    onShowItem: (data) => dispatch(actions.showItem(data)),
+    // onShowItem: (data) => dispatch(actions.showItem(data)),
     onUpdateItem: (data) => dispatch(actions.updateItem(data)),
     onAddItemToPantry: (data) => dispatch(actions.addToPantry(data)),
     onToggleFormDisplay: (token, visible) => dispatch(actions.toggleFormDisplay(token, visible)),

@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom';
-import { BrowserRouter } from 'react-router-dom';
+// import { BrowserRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 import * as actions from '../../store/actions/index';
+import SuggestAction from '../../components/Navigation/SuggestAction/SuggestAction';
 import Item from '../../components/Item/Item';
 import ItemForm from '../Items/ItemForm/ItemForm';
 import Spinner from '../../components/UI/Spinner/Spinner';
@@ -14,12 +15,22 @@ class Pantry extends Component {
     this.props.getPantry(this.props.token);
   }
 
-  handleRemoveFromPantry = () => {
-    
+  handleRemoveFromPantry = (event, itemId) => {
+    event.preventDefault();
+    const data = {
+      token: this.props.token,
+      userId: this.props.userId,
+      itemId: itemId
+    }
+    this.props.onRemoveFromPantry(data);
   }
 
   render() {
     let pantry = <Spinner />
+
+    if (!this.props.token) {
+      pantry = <Redirect to="/" />
+    }
 
     if (!this.props.loading && this.props.pantry.length === 0) {
       pantry = (
@@ -42,7 +53,7 @@ class Pantry extends Component {
             id={item._id}
             token={this.props.token}
             userId={this.props.userId}
-            removeFromPantry={this.handleRemoveFromPantry}
+            removeFromPantry={(event) => this.handleRemoveFromPantry(event, item._id)}
           />
         );
       });

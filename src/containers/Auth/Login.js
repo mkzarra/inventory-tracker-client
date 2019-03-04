@@ -42,6 +42,10 @@ class Login extends Component {
         }
       }
     }
+  
+  componentDidMount() {
+    console.log('[componentDidMount] Login.js')
+  }
 
   checkValidity(value, rules) {
     let isValid = true;
@@ -76,9 +80,11 @@ class Login extends Component {
   submitHandler = (event) => {
     event.preventDefault();
     const data = {
-      'email': this.state.controls.email.elementConfig.value,
-      'password': this.state.controls.password.elementConfig.value
+      email: this.state.controls.email.elementConfig.value,
+      password: this.state.controls.password.elementConfig.value
     };
+    
+    console.log(data);
     this.props.onLogin(data);
   }
 
@@ -126,15 +132,12 @@ class Login extends Component {
         </form>
       </div>
     );
+
     if (this.props.token) {
       login = <Redirect to="/" />
     }
 
-    return (
-      <div>
-        {login}
-      </div>
-    );
+    return login;
   }
 }
 

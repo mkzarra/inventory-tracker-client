@@ -68,10 +68,10 @@ export const getPantry = (data) => {
           });
         }
         console.log(fetchedItems);
-        dispatch(getItemsSuccess(fetchedItems));
+        dispatch(getPantrySuccess(fetchedItems));
       })
       .catch(err => {
-        dispatch(getItemsFail(err));
+        dispatch(getPantryFail(err));
       });
   }
 }
@@ -102,9 +102,9 @@ export const addToPantry = (data) => {
 export const removeFromPantry = (data) => {
   return dispatch => {
     dispatch(pantryStart());
-    axios.delete(apiUrl + '/pantry' + data.item.id, {
+    axios.delete(apiUrl + '/pantry' + data.itemId, {
       headers: {
-        Authorization: 'Bearer ' + data.user.token
+        Authorization: 'Bearer ' + data.token
       }
     })
       .then(res => {
