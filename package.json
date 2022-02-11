@@ -4,7 +4,7 @@
   "private": true,
   "dependencies": {
     "@material-ui/core": "^3.6.1",
-    "ajv": "^6.6.1",
+    "ajv": "^6.12.3",
     "axios": "^0.18.0",
     "lodash": "^4.17.19",
     "react": "^16.6.3",
